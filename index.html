@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
     <title>Senarai Ujian Hospital Baling</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,37 +12,48 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
+                    colors: {
+                        'brand-bg': '#E0E5EC',
+                    },
+                    boxShadow: {
+                        'neumorphic': '9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff',
+                        'neumorphic-inset': 'inset 9px 9px 16px #a3b1c6, inset -9px -9px 16px #ffffff',
+                        'neumorphic-button': '5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff',
+                        'neumorphic-button-pressed': 'inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff',
+                    }
                 },
             },
         }
     </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-brand-bg font-sans">
 
     <div class="container mx-auto p-4">
         <!-- Header Section -->
-        <header class="bg-blue-300 rounded-lg shadow-md p-6 mb-8 flex flex-col sm:flex-row items-center justify-between">
+        <header class="bg-brand-bg rounded-lg shadow-neumorphic p-6 mb-8 flex flex-col sm:flex-row items-center justify-between">
             <div class="flex items-center mb-4 sm:mb-0">
                 <img src="https://i.imgur.com/SBAttec.png" alt="LOGO HOSPITAL" class="h-12 mr-4">
-                <h1 class="text-2xl font-bold text-white text-center sm:text-left">Senarai Ujian Hospital Baling</h1>
+                <h1 class="text-2xl font-bold text-gray-700 text-center sm:text-left">Senarai Ujian Hospital Baling</h1>
             </div>
-            <a href="https://docs.google.com/spreadsheets/d/1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04/export?format=xlsx" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out" download>
+            <a href="https://docs.google.com/spreadsheets/d/1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04/export?format=xlsx" 
+               class="bg-brand-bg text-gray-700 font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150" 
+               download>
                 Muat Turun Senarai Ujian
             </a>
         </header>
 
         <!-- Search Input -->
-        <div class="mb-4">
-            <input type="text" id="searchBox" placeholder="Taip untuk cari ujian..." class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+        <div class="mb-8">
+            <input type="text" id="searchBox" placeholder="Taip untuk cari ujian..." class="w-full p-4 bg-brand-bg border-none rounded-lg shadow-neumorphic-inset focus:outline-none text-center text-gray-700">
         </div>
 
         <!-- Table Container -->
-        <div class="overflow-auto max-h-[75vh] bg-white rounded-lg shadow">
-            <table id="dataTable" class="w-full table-auto divide-y divide-gray-200">
-                <thead class="bg-cyan-600 sticky top-0 z-10">
-                    <tr>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Ujian</th>
+        <div class="overflow-auto max-h-[75vh] bg-brand-bg rounded-lg shadow-neumorphic p-2">
+            <table id="dataTable" class="w-full table-auto">
+                <thead class="sticky top-0 z-10">
+                    <tr class="bg-gradient-to-r from-purple-500 to-blue-600">
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider rounded-tl-lg">Ujian</th>
                         <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Status</th>
                         <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Permohonan</th>
                         <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Borang</th>
@@ -55,10 +66,10 @@
                         <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">TAT</th>
                         <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Pusat Ujian</th>
                         <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Makmal</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Keputusan</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider rounded-tr-lg">Keputusan</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200" id="tableBody">
+                <tbody id="tableBody">
                     <!-- Data will be inserted here -->
                 </tbody>
             </table>
@@ -79,16 +90,23 @@
         document.getElementById('searchBox').addEventListener('keyup', filterTable);
 
         /**
-         * Fetches data from the Google Sheet.
+         * Fetches and parses data from the Google Sheet.
          */
         function fetchData() {
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
-                    const rows = data.split('\n').slice(1); // Skip header row
-                    const parsedData = rows.map(row => {
-                        // This regex handles commas inside quoted fields
-                        return row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g).map(cell => cell.replace(/"/g, ''));
+                    const rows = data.split(/\r?\n(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+                    const parsedData = rows.slice(1).map(row => {
+                        if (!row) return [];
+                        const columns = row.match(/("[\s\S]*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
+                        return columns.map(cell => {
+                            let cleanCell = cell.trim();
+                            if (cleanCell.startsWith('"') && cleanCell.endsWith('"')) {
+                                cleanCell = cleanCell.slice(1, -1);
+                            }
+                            return cleanCell.replace(/""/g, '"');
+                        });
                     });
                     displayData(parsedData);
                 })
@@ -97,67 +115,64 @@
 
         /**
          * Checks if a string is a valid URL.
-         * @param {string} str - The string to check.
-         * @returns {boolean} - True if the string is a valid URL, false otherwise.
          */
         function isValidUrl(str) {
-            const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-                '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-                '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-                '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+            const pattern = new RegExp('^(https?:\\/\\/)?' + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + '((\\d{1,3}\\.){3}\\d{1,3}))' + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + '(\\?[;&a-z\\d%_.~+=-]*)?' + '(\\#[-a-z\\d_]*)?$', 'i');
             return !!pattern.test(str);
         }
 
         /**
          * Displays the fetched data in the table.
-         * @param {Array<Array<string>>} data - The data from the Google Sheet.
          */
         function displayData(data) {
             const tableBody = document.getElementById("tableBody");
-            tableBody.innerHTML = ""; // Clear existing data
+            tableBody.innerHTML = "";
+            const columnCount = 14;
 
             data.forEach((row) => {
+                if (!Array.isArray(row) || row.every(cell => !cell || cell.trim() === '')) {
+                    return;
+                }
+                
                 const rowElement = document.createElement("tr");
-                rowElement.className = "hover:bg-gray-100";
+                rowElement.className = "border-b border-gray-300";
 
-                row.forEach((cell, index) => {
+                for (let i = 0; i < columnCount; i++) {
+                    const cell = row[i] || '';
                     const cellElement = document.createElement("td");
-                    // Removed whitespace-nowrap and adjusted padding to allow text wrapping and better spacing
                     cellElement.className = "px-2 py-4 text-sm text-gray-700 text-center break-words";
-
-                    const cellText = cell ? cell.trim() : '';
+                    
+                    const cellText = cell.trim();
 
                     if (cellText.toUpperCase() === "ACTIVE") {
-                        cellElement.textContent = cellText;
-                        cellElement.className += " bg-green-200 text-green-800 font-semibold";
+                        cellElement.innerText = cellText;
+                        cellElement.className += " text-green-500 font-semibold";
                     } else if (cellText.toUpperCase() === "SUSPENDED") {
-                        cellElement.textContent = cellText;
-                        cellElement.className += " bg-red-200 text-red-800 font-semibold";
+                        cellElement.innerText = cellText;
+                        cellElement.className += " text-red-500 font-semibold";
                     } else if (isValidUrl(cellText)) {
                         const anchor = document.createElement("a");
                         anchor.href = cellText.startsWith('http') ? cellText : `http://${cellText}`;
                         anchor.target = "_blank";
-                        anchor.className = "text-blue-500 hover:underline";
+                        anchor.className = "text-blue-600 hover:underline";
                         
                         if (cellText.includes("10.159.102.72/Home/Order/Req") || cellText.includes("10.159.102.72/Home/Result")) {
-                            anchor.textContent = "i-Report AG Hospital Baling";
+                            anchor.innerText = "i-Report AG Hospital Baling";
                         } else if (cellText.includes("10.159.96.131/iReportAG/Home/Result")) {
-                            anchor.textContent = "i-ReportAG Hospital Kulim";
+                            anchor.innerText = "i-ReportAG Hospital Kulim";
                         } else {
-                            anchor.textContent = "Klik untuk Borang Permohonan Ujian";
+                            anchor.innerText = "Klik untuk Borang Permohonan Ujian";
                         }
                         cellElement.appendChild(anchor);
                     } else {
-                        cellElement.textContent = cellText;
+                        cellElement.innerText = cellText;
                     }
-                     if (index === 7) { // 8th column for "Panduan untuk Ward dan Klinik"
+                     if (i === 7) {
                         cellElement.classList.add('text-red-600', 'font-medium');
                     }
 
                     rowElement.appendChild(cellElement);
-                });
+                }
 
                 tableBody.appendChild(rowElement);
             });
