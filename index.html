@@ -13,13 +13,13 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        'brand-bg': '#FFFFFF',
+                        'component-bg': '#F0F7FF', // A very light blue for components
                     },
                     boxShadow: {
-                        'neumorphic': '9px 9px 16px #d9d9d9, -9px -9px 16px #ffffff',
-                        'neumorphic-inset': 'inset 9px 9px 16px #d9d9d9, inset -9px -9px 16px #ffffff',
-                        'neumorphic-button': '5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff',
-                        'neumorphic-button-pressed': 'inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff',
+                        'neumorphic': '9px 9px 16px #d5dde6, -9px -9px 16px #ffffff',
+                        'neumorphic-inset': 'inset 9px 9px 16px #d5dde6, inset -9px -9px 16px #ffffff',
+                        'neumorphic-button': '5px 5px 10px #d5dde6, -5px -5px 10px #ffffff',
+                        'neumorphic-button-pressed': 'inset 5px 5px 10px #d5dde6, inset -5px -5px 10px #ffffff',
                     }
                 },
             },
@@ -27,17 +27,17 @@
     </script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
-<body class="bg-brand-bg font-sans">
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 font-sans">
 
     <div class="container mx-auto p-4">
         <!-- Header Section -->
-        <header class="bg-brand-bg rounded-lg shadow-neumorphic p-6 mb-8 flex flex-col sm:flex-row items-center justify-between">
+        <header class="bg-component-bg rounded-lg shadow-neumorphic p-6 mb-8 flex flex-col sm:flex-row items-center justify-between">
             <div class="flex items-center mb-4 sm:mb-0">
                 <img src="https://i.imgur.com/SBAttec.png" alt="LOGO HOSPITAL" class="h-12 mr-4">
                 <h1 class="text-2xl font-bold text-gray-700 text-center sm:text-left">Senarai Ujian Hospital Baling</h1>
             </div>
             <a href="https://docs.google.com/spreadsheets/d/1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04/export?format=xlsx" 
-               class="bg-brand-bg text-gray-700 font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150" 
+               class="bg-component-bg text-gray-700 font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150" 
                download>
                 Muat Turun Senarai Ujian
             </a>
@@ -45,11 +45,11 @@
 
         <!-- Search Input -->
         <div class="mb-8">
-            <input type="text" id="searchBox" placeholder="Taip untuk cari ujian..." class="w-full p-4 bg-brand-bg border-none rounded-lg shadow-neumorphic-inset focus:outline-none text-center text-gray-700">
+            <input type="text" id="searchBox" placeholder="Taip untuk cari ujian..." class="w-full p-4 bg-component-bg border-none rounded-lg shadow-neumorphic-inset focus:outline-none text-center text-gray-700">
         </div>
 
         <!-- Table Container -->
-        <div class="overflow-auto max-h-[75vh] bg-brand-bg rounded-lg shadow-neumorphic p-2">
+        <div class="overflow-auto max-h-[75vh] bg-white rounded-lg shadow-neumorphic p-2">
             <table id="dataTable" class="w-full table-auto">
                 <thead class="sticky top-0 z-10">
                     <tr class="bg-gray-800">
@@ -69,7 +69,7 @@
                         <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider rounded-tr-lg">Keputusan</th>
                     </tr>
                 </thead>
-                <tbody id="tableBody">
+                <tbody id="tableBody" class="bg-white">
                     <!-- Data will be inserted here -->
                 </tbody>
             </table>
@@ -199,4 +199,5 @@
     </script>
 </body>
 </html>
+
 
