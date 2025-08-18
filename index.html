@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senarai Ujian Hospital Baling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="container mx-auto p-4">
+        <!-- Header Section -->
+        <header class="bg-blue-300 rounded-lg shadow-md p-6 mb-8 flex flex-col sm:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 sm:mb-0">
+                <img src="https://i.imgur.com/SBAttec.png" alt="LOGO HOSPITAL" class="h-12 mr-4">
+                <h1 class="text-2xl font-bold text-white text-center sm:text-left">Senarai Ujian Hospital Baling</h1>
+            </div>
+            <a href="https://docs.google.com/spreadsheets/d/1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04/export?format=xlsx" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out" download>
+                Muat Turun Senarai Ujian
+            </a>
+        </header>
+
+        <!-- Search Input -->
+        <div class="mb-4">
+            <input type="text" id="searchBox" placeholder="Taip untuk cari ujian..." class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">
+        </div>
+
+        <!-- Table Container -->
+        <div class="overflow-x-auto bg-white rounded-lg shadow">
+            <table id="dataTable" class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-cyan-600">
+                    <tr>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Ujian</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Permohonan</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Borang</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Spesimen</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Bekas</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Isipadu</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Panduan untuk Ward dan Klinik</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Panduan untuk Staf Makmal</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Jadual Ujian</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">TAT</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Pusat Ujian</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Makmal</th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Keputusan</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200" id="tableBody">
+                    <!-- Data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const sheetId = '1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04';
+        const sheetGid = '0';
+        const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&gid=${sheetGid}`;
+
+        // Fetch and display data on window load
+        window.onload = function() {
+            fetchData();
+        };
+
+        // Add event listener for the search box
+        document.getElementById('searchBox').addEventListener('keyup', filterTable);
+
+        /**
+         * Fetches data from the Google Sheet.
+         */
+        function fetchData() {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    const rows = data.split('\n').slice(1); // Skip header row
+                    const parsedData = rows.map(row => {
+                        return row.split(',').map(cell => cell.replace(/"/g, ''));
+                    });
+                    displayData(parsedData);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        /**
+         * Checks if a string is a valid URL.
+         * @param {string} str - The string to check.
+         * @returns {boolean} - True if the string is a valid URL, false otherwise.
+         */
+        function isValidUrl(str) {
+            const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+                '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+                '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+                '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+                '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+                '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+            return !!pattern.test(str);
+        }
+
+        /**
+         * Displays the fetched data in the table.
+         * @param {Array<Array<string>>} data - The data from the Google Sheet.
+         */
+        function displayData(data) {
+            const tableBody = document.getElementById("tableBody");
+            tableBody.innerHTML = ""; // Clear existing data
+
+            data.forEach((row) => {
+                const rowElement = document.createElement("tr");
+                rowElement.className = "hover:bg-gray-100";
+
+                row.forEach((cell, index) => {
+                    const cellElement = document.createElement("td");
+                    cellElement.className = "px-6 py-4 whitespace-nowrap text-sm text-gray-700 text-center";
+
+                    const cellText = cell.trim();
+
+                    if (cellText.toUpperCase() === "ACTIVE") {
+                        cellElement.textContent = cellText;
+                        cellElement.className += " bg-green-200 text-green-800 font-semibold";
+                    } else if (cellText.toUpperCase() === "SUSPENDED") {
+                        cellElement.textContent = cellText;
+                        cellElement.className += " bg-red-200 text-red-800 font-semibold";
+                    } else if (isValidUrl(cellText)) {
+                        const anchor = document.createElement("a");
+                        anchor.href = cellText.startsWith('http') ? cellText : `http://${cellText}`;
+                        anchor.target = "_blank";
+                        anchor.className = "text-blue-500 hover:underline";
+                        
+                        if (cellText.includes("10.159.102.72/Home/Order/Req") || cellText.includes("10.159.102.72/Home/Result")) {
+                            anchor.textContent = "i-Report AG Hospital Baling";
+                        } else if (cellText.includes("10.159.96.131/iReportAG/Home/Result")) {
+                            anchor.textContent = "i-ReportAG Hospital Kulim";
+                        } else {
+                            anchor.textContent = "Klik untuk Borang Permohonan Ujian";
+                        }
+                        cellElement.appendChild(anchor);
+                    } else {
+                        cellElement.textContent = cellText;
+                    }
+                     if (index === 7) { // 8th column for "Panduan untuk Ward dan Klinik"
+                        cellElement.classList.add('text-red-600', 'font-medium');
+                    }
+
+                    rowElement.appendChild(cellElement);
+                });
+
+                tableBody.appendChild(rowElement);
+            });
+        }
+
+        /**
+         * Filters the table based on the search input.
+         */
+        function filterTable() {
+            const filter = document.getElementById("searchBox").value.toLowerCase();
+            const rows = document.querySelectorAll("#dataTable tbody tr");
+
+            rows.forEach((row) => {
+                const cells = row.querySelectorAll("td");
+                let match = false;
+                cells.forEach((cell) => {
+                    if (cell.textContent.toLowerCase().includes(filter)) {
+                        match = true;
+                    }
+                });
+                row.style.display = match ? "" : "none";
+            });
+        }
+    </script>
+</body>
+</html>
