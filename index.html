@@ -185,6 +185,8 @@
                             anchor.innerText = "i-Report AG Hospital Baling";
                         } else if (cellText.includes("10.159.96.131/iReportAG/Home/Result")) {
                             anchor.innerText = "i-ReportAG Hospital Kulim";
+                        } else if (cellText.includes("drive.google.com/file/d/1AUplgYHH0Q8aSHpfR16Voeid934SVOwD")) {
+                            anchor.innerText = "Perpat-301";
                         } else {
                             anchor.innerText = "Klik untuk Borang Permohonan Ujian";
                         }
@@ -228,13 +230,31 @@
                 const headerElement = document.createElement('strong');
                 headerElement.className = 'text-gray-600 text-sm';
                 headerElement.innerText = header;
-
-                const valueElement = document.createElement('span');
-                valueElement.className = 'text-gray-800 mt-1';
-                valueElement.innerText = value;
-
                 detailElement.appendChild(headerElement);
-                detailElement.appendChild(valueElement);
+
+                if (isValidUrl(value)) {
+                    const anchor = document.createElement("a");
+                    anchor.href = value.startsWith('http') ? value : `http://${value}`;
+                    anchor.target = "_blank";
+                    anchor.className = "text-blue-600 hover:underline mt-1";
+                    
+                    if (value.includes("10.159.102.72/Home/Order/Req") || value.includes("10.159.102.72/Home/Result")) {
+                        anchor.innerText = "i-Report AG Hospital Baling";
+                    } else if (value.includes("10.159.96.131/iReportAG/Home/Result")) {
+                        anchor.innerText = "i-ReportAG Hospital Kulim";
+                    } else if (value.includes("drive.google.com/file/d/1AUplgYHH0Q8aSHpfR16Voeid934SVOwD")) {
+                        anchor.innerText = "Perpat-301";
+                    } else {
+                        anchor.innerText = "Klik untuk Borang Permohonan Ujian";
+                    }
+                    detailElement.appendChild(anchor);
+                } else {
+                    const valueElement = document.createElement('span');
+                    valueElement.className = 'text-gray-800 mt-1';
+                    valueElement.innerText = value;
+                    detailElement.appendChild(valueElement);
+                }
+                
                 modalContent.appendChild(detailElement);
             });
 
@@ -291,3 +311,4 @@
     </script>
 </body>
 </html>
+
