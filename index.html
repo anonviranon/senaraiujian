@@ -76,10 +76,28 @@
         </div>
     </div>
 
+    <!-- Details Modal -->
+    <div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center p-4 z-50 transition-opacity duration-300">
+        <div class="bg-component-bg rounded-lg shadow-neumorphic p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative transform transition-transform duration-300 scale-95">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold">&times;</button>
+            <h2 id="modalTitle" class="text-xl font-bold text-gray-800 mb-6 border-b pb-2">Test Details</h2>
+            <div id="modalContent" class="space-y-3">
+                <!-- Details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+
     <script>
         const sheetId = '1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04';
         const sheetGid = '0';
         const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&gid=${sheetGid}`;
+
+        const headers = [
+            'Ujian', 'Status', 'Permohonan', 'Borang', 'Spesimen', 'Bekas', 'Isipadu',
+            'Panduan untuk Ward dan Klinik', 'Panduan untuk Staf Makmal', 'Jadual Ujian',
+            'TAT', 'Pusat Ujian', 'Makmal', 'Keputusan'
+        ];
 
         // Fetch and display data on window load
         window.onload = function() {
@@ -123,6 +141,7 @@
 
         /**
          * Displays the fetched data in the table.
+         * @param {Array<Array<string>>} data - The data from the Google Sheet.
          */
         function displayData(data) {
             const tableBody = document.getElementById("tableBody");
@@ -143,6 +162,12 @@
                     cellElement.className = "px-2 py-4 text-sm text-gray-700 text-center break-words";
                     
                     const cellText = cell.trim();
+
+                    // Make the first column clickable to open the modal
+                    if (i === 0) {
+                        cellElement.classList.add('cursor-pointer', 'text-blue-600', 'hover:underline', 'font-semibold');
+                        cellElement.addEventListener('click', () => showModal(row));
+                    }
 
                     if (cellText.toUpperCase() === "ACTIVE") {
                         cellElement.innerText = cellText;
@@ -179,6 +204,73 @@
         }
 
         /**
+         * Shows the details modal with data from the clicked row.
+         * @param {Array<string>} rowData - The data for the selected row.
+         */
+        function showModal(rowData) {
+            const modal = document.getElementById('detailsModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+            const modalBox = modal.querySelector('div');
+
+            // Set title and clear previous content
+            modalTitle.innerText = rowData[0] || 'Test Details';
+            modalContent.innerHTML = '';
+
+            // Populate modal with data
+            headers.forEach((header, index) => {
+                const value = rowData[index] || 'N/A';
+                if (index === 0) return; // Skip the title as it's already in the header
+
+                const detailElement = document.createElement('div');
+                detailElement.className = 'flex flex-col border-b border-gray-300 pb-2';
+                
+                const headerElement = document.createElement('strong');
+                headerElement.className = 'text-gray-600 text-sm';
+                headerElement.innerText = header;
+
+                const valueElement = document.createElement('span');
+                valueElement.className = 'text-gray-800 mt-1';
+                valueElement.innerText = value;
+
+                detailElement.appendChild(headerElement);
+                detailElement.appendChild(valueElement);
+                modalContent.appendChild(detailElement);
+            });
+
+            // Show the modal with animation
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalBox.classList.remove('scale-95');
+            }, 10);
+        }
+
+        /**
+         * Closes the details modal.
+         */
+        function closeModal() {
+            const modal = document.getElementById('detailsModal');
+            const modalBox = modal.querySelector('div');
+
+            modal.classList.add('opacity-0');
+            modalBox.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); // Match duration of transition
+        }
+
+        // Event listeners for closing the modal
+        document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+        document.getElementById('detailsModal').addEventListener('click', (event) => {
+            // Close if the overlay is clicked, but not the content inside
+            if (event.target === event.currentTarget) {
+                closeModal();
+            }
+        });
+
+
+        /**
          * Filters the table based on the search input.
          */
         function filterTable() {
@@ -199,5 +291,3 @@
     </script>
 </body>
 </html>
-
-
