@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senarai Ujian Hospital Baling</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -36,11 +36,18 @@
                 <img src="https://i.imgur.com/SBAttec.png" alt="LOGO HOSPITAL" class="h-12 mr-4">
                 <h1 class="text-2xl font-bold text-gray-700 text-center sm:text-left">Senarai Ujian Hospital Baling</h1>
             </div>
-            <a href="https://docs.google.com/spreadsheets/d/1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04/export?format=xlsx" 
-               class="bg-component-bg text-gray-700 font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150" 
-               download>
-                Muat Turun Senarai Ujian
-            </a>
+            <div class="flex items-center space-x-4">
+                <a href="https://docs.google.com/spreadsheets/d/1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04/export?format=xlsx" 
+                   class="bg-component-bg text-gray-700 font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150" 
+                   download>
+                    Muat Turun Senarai Ujian
+                </a>
+                <a href="https://wa.me/60134774758" target="_blank"
+                   class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150 flex items-center">
+                   <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.655 4.398 1.908 6.161l.217.324-1.283 4.686 4.759-1.249.352.215z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
         </header>
 
         <!-- Search Input -->
@@ -48,8 +55,13 @@
             <input type="text" id="searchBox" placeholder="Taip untuk cari ujian..." class="w-full p-4 bg-component-bg border-none rounded-lg shadow-neumorphic-inset focus:outline-none text-center text-gray-700">
         </div>
 
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="flex justify-center items-center p-8">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+        </div>
+
         <!-- Table Container -->
-        <div class="overflow-auto max-h-[75vh] bg-white rounded-lg shadow-neumorphic p-2">
+        <div id="tableContainer" class="overflow-auto max-h-[75vh] bg-white rounded-lg shadow-neumorphic p-2 hidden">
             <table id="dataTable" class="w-full table-auto">
                 <thead class="sticky top-0 z-10">
                     <tr class="bg-gray-800">
@@ -128,7 +140,13 @@
                     });
                     displayData(parsedData);
                 })
-                .catch(error => console.error('Error fetching data:', error));
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    const spinner = document.getElementById('loadingSpinner');
+                    if(spinner) {
+                        spinner.innerHTML = '<p class="text-center text-red-600 font-semibold">Gagal memuatkan data. Sila semak sambungan internet anda dan cuba lagi.</p>';
+                    }
+                });
         }
 
         /**
@@ -295,14 +313,17 @@
                         cellElement.innerText = cellText;
                     }
                      if (i === 7) {
-                        cellElement.classList.add('text-red-600', 'font-medium');
-                    }
+                         cellElement.classList.add('text-red-600', 'font-medium');
+                     }
 
                     rowElement.appendChild(cellElement);
                 }
 
                 tableBody.appendChild(rowElement);
             });
+
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.getElementById('tableContainer').classList.remove('hidden');
         }
 
         /**
@@ -473,3 +494,4 @@
     </script>
 </body>
 </html>
+
