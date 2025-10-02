@@ -1,442 +1,559 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senarai Ujian Hospital Baling</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'component-bg': '#F0F7FF', // A very light blue for components
-                    },
-                    boxShadow: {
-                        'neumorphic': '9px 9px 16px #d5dde6, -9px -9px 16px #ffffff',
-                        'neumorphic-inset': 'inset 9px 9px 16px #d5dde6, inset -9px -9px 16px #ffffff',
-                        'neumorphic-button': '5px 5px 10px #d5dde6, -5px -5px 10px #ffffff',
-                        'neumorphic-button-pressed': 'inset 5px 5px 10px #d5dde6, inset -5px -5px 10px #ffffff',
-                    }
-                },
-            },
-        }
-    </script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senarai Ujian Hospital Baling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'component-bg': '#F0F7FF', // A very light blue for components
+                    },
+                    boxShadow: {
+                        'neumorphic': '9px 9px 16px #d5dde6, -9px -9px 16px #ffffff',
+                        'neumorphic-inset': 'inset 9px 9px 16px #d5dde6, inset -9px -9px 16px #ffffff',
+                        'neumorphic-button': '5px 5px 10px #d5dde6, -5px -5px 10px #ffffff',
+                        'neumorphic-button-pressed': 'inset 5px 5px 10px #d5dde6, inset -5px -5px 10px #ffffff',
+                    }
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-blue-100 font-sans">
 
-    <div class="container mx-auto p-4">
-        <!-- Header Section -->
-        <header class="bg-component-bg rounded-lg shadow-neumorphic p-6 mb-8 flex flex-col sm:flex-row items-center justify-between">
-            <div class="flex items-center mb-4 sm:mb-0">
-                <!-- Placeholder for Hospital Logo -->
-                <img src="https://placehold.co/48x48/007AFF/ffffff?text=HB" alt="Hospital Baling Logo" class="h-12 w-12 rounded-lg mr-4">
-                <h1 class="text-2xl font-bold text-gray-700 text-center sm:text-left">Senarai Ujian Hospital Baling</h1>
-            </div>
-            
-            <!-- Button Container: Stacked vertically on mobile (flex-col), row horizontally on large screens (sm:flex-row) -->
-            <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
-                
-                <!-- Download Button - Forced line break on small screens -->
-                <a href="https://docs.google.com/spreadsheets/d/1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04/export?format=xlsx" 
-                   class="flex flex-col sm:flex-row sm:justify-center items-center bg-component-bg text-gray-700 font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150 w-full sm:w-auto text-center" 
-                   download>
-                   <span class="inline sm:hidden">Muat Turun</span>
-                   <span class="inline sm:hidden">Senarai Ujian</span>
-                   <span class="hidden sm:inline">Muat Turun Senarai Ujian</span>
-                </a>
-                
-                <!-- Handbooks Button -->
-                <a href="https://script.google.com/a/macros/moh.gov.my/s/AKfycbxmb5YT5u6IqfIrtutizp5MfsNb5U0zt98U9Rn3N6ggdThbSbmfrhqrIRbqqza059uxeA/exec" 
-                   target="_blank"
-                   class="flex justify-center items-center bg-component-bg text-gray-700 font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150 w-full sm:w-auto whitespace-nowrap">
-                   Handbooks
-                </a>
-                
-                <!-- WhatsApp Button - Ensures content remains sebaris (inline) -->
-                <a href="https://wa.me/60134774758" target="_blank"
-                   class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150 flex items-center justify-center w-full sm:w-auto whitespace-nowrap">
-                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.655 4.398 1.908 6.161l.217.324-1.283 4.686 4.759-1.249.352.215z"/></svg>
-                   WhatsApp
-                </a>
-            </div>
-        </header>
+    <div class="container mx-auto p-4">
+        <!-- Header Section -->
+        <header class="bg-component-bg rounded-lg shadow-neumorphic p-6 mb-8 flex flex-col sm:flex-row items-center justify-between">
+            <div class="flex items-center mb-4 sm:mb-0">
+                <img src="https://i.imgur.com/SBAttec.png" alt="LOGO HOSPITAL" class="h-12 mr-4">
+                <h1 class="text-2xl font-bold text-gray-700 text-center sm:text-left">Senarai Ujian Hospital Baling</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://docs.google.com/spreadsheets/d/1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04/export?format=xlsx" 
+                   class="bg-component-bg text-gray-700 font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150" 
+                   download>
+                   Muat Turun Senarai Ujian
+                </a>
+                <a href="https://wa.me/60134774758" target="_blank"
+                   class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-neumorphic-button active:shadow-neumorphic-button-pressed transition-shadow duration-150 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.267.655 4.398 1.908 6.161l.217.324-1.283 4.686 4.759-1.249.352.215z"/></svg>
+                    WhatsApp
+                </a>
+            </div>
+        </header>
 
-        <!-- Search Input -->
-        <div class="mb-8">
-            <input type="text" id="searchBox" placeholder="Taip untuk cari ujian..." class="w-full p-4 bg-component-bg border-none rounded-lg shadow-neumorphic-inset focus:outline-none text-center text-gray-700">
-        </div>
+        <!-- Search Input -->
+        <div class="mb-8">
+            <input type="text" id="searchBox" placeholder="Taip untuk cari ujian..." class="w-full p-4 bg-component-bg border-none rounded-lg shadow-neumorphic-inset focus:outline-none text-center text-gray-700">
+        </div>
 
-        <!-- Loading Spinner -->
-        <div id="loadingSpinner" class="flex justify-center items-center p-8">
-            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
-        </div>
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="flex justify-center items-center p-8">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500"></div>
+        </div>
 
-        <!-- Table Container -->
-        <div id="tableContainer" class="overflow-auto max-h-[75vh] bg-white rounded-lg shadow-neumorphic p-2 hidden">
-            <table id="dataTable" class="w-full table-auto">
-                <thead class="sticky top-0 z-10">
-                    <tr class="bg-gray-800">
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider rounded-tl-lg">Ujian</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Status</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Permohonan</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Borang</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Spesimen</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Bekas</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Isipadu</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Panduan untuk Ward dan Klinik</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Panduan untuk Staf Makmal</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Jadual Ujian</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">TAT</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Pusat Ujian</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Makmal</th>
-                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider rounded-tr-lg hidden md:table-cell">Keputusan</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody" class="bg-white">
-                    <!-- Data will be inserted here -->
-                </tbody>
-            </table>
-        </div>
-    </div>
+        <!-- Table Container -->
+        <div id="tableContainer" class="overflow-auto max-h-[75vh] bg-white rounded-lg shadow-neumorphic p-2 hidden">
+            <table id="dataTable" class="w-full table-auto">
+                <thead class="sticky top-0 z-10">
+                    <tr class="bg-gray-800">
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider rounded-tl-lg">Ujian</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Status</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Permohonan</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Borang</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Spesimen</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Bekas</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Isipadu</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Panduan untuk Ward dan Klinik</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Panduan untuk Staf Makmal</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Jadual Ujian</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">TAT</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Pusat Ujian</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider hidden md:table-cell">Makmal</th>
+                        <th class="px-2 py-3 text-center text-xs font-medium text-white uppercase tracking-wider rounded-tr-lg hidden md:table-cell">Keputusan</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody" class="bg-white">
+                    <!-- Data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <!-- Details Modal -->
-    <div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center p-4 z-50 transition-opacity duration-300 opacity-0">
-        <div class="bg-component-bg rounded-lg shadow-neumorphic p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative transform transition-transform duration-300 scale-95">
-            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold">&times;</button>
-            <h2 id="modalTitle" class="text-xl font-bold text-gray-800 mb-6 border-b pb-2">Test Details</h2>
-            <div id="modalContent" class="space-y-3">
-                <!-- Details will be populated here -->
-            </div>
-        </div>
-        <!-- This element must be here to enable transition on click outside -->
-    </div>
+    <!-- Details Modal -->
+    <div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center p-4 z-50 transition-opacity duration-300 opacity-0">
+        <div class="bg-component-bg rounded-lg shadow-neumorphic p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto relative transform transition-transform duration-300 scale-95">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold">&times;</button>
+            <h2 id="modalTitle" class="text-xl font-bold text-gray-800 mb-6 border-b pb-2">Test Details</h2>
+            <div id="modalContent" class="space-y-3">
+                <!-- Details will be populated here -->
+            </div>
+        </div>
+    </div>
 
 
 <script>
-    // --- Configuration and Initialization ---
-    const sheetId = '1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04';
-    const sheetGid = '0';
-    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&gid=${sheetGid}`;
+    const sheetId = '1wbIt_KVFfIfqmB6-QR3Fk7zT5tY7lV_EzmqXaWgBY04';
+    const sheetGid = '0';
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&gid=${sheetGid}`;
 
-    // Header labels corresponding to the Google Sheet columns
-    const headers = [
-        'Ujian', 'Status', 'Permohonan', 'Borang', 'Spesimen', 'Bekas', 'Isipadu',
-        'Panduan untuk Ward dan Klinik', 'Panduan untuk Staf Makmal', 'Jadual Ujian',
-        'TAT', 'Pusat Ujian', 'Makmal', 'Keputusan'
-    ];
+    const headers = [
+        'Ujian', 'Status', 'Permohonan', 'Borang', 'Spesimen', 'Bekas', 'Isipadu',
+        'Panduan untuk Ward dan Klinik', 'Panduan untuk Staf Makmal', 'Jadual Ujian',
+        'TAT', 'Pusat Ujian', 'Makmal', 'Keputusan'
+    ];
 
-    // DOM element references
-    const tableBody = document.getElementById("tableBody");
-    const loadingSpinner = document.getElementById('loadingSpinner');
-    const tableContainer = document.getElementById('tableContainer');
-    const searchBox = document.getElementById('searchBox');
-    const detailsModal = document.getElementById('detailsModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const modalBox = detailsModal.querySelector('div');
+    // Fetch and display data on window load
+    window.onload = function() {
+        fetchData();
+    };
 
-    // Global variable to hold all fetched data for filtering
-    let allTestData = [];
+    // Add event listener for the search box
+    document.getElementById('searchBox').addEventListener('keyup', filterTable);
 
-    // Fetch and display data on window load
-    window.onload = function() {
-        fetchData();
-    };
+    /**
+     * Fetches and parses data from the Google Sheet.
+     */
+    function fetchData() {
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split(/\r?\n(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+                const parsedData = rows.slice(1).map(row => {
+                    if (!row) return [];
+                    const columns = row.match(/("[\s\S]*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
+                    return columns.map(cell => {
+                        let cleanCell = cell.trim();
+                        if (cleanCell.startsWith('"') && cleanCell.endsWith('"')) {
+                            cleanCell = cleanCell.slice(1, -1);
+                        }
+                        return cleanCell.replace(/""/g, '"');
+                    });
+                });
+                displayData(parsedData);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                const spinner = document.getElementById('loadingSpinner');
+                if(spinner) {
+                    spinner.innerHTML = '<p class="text-center text-red-600 font-semibold">Gagal memuatkan data. Sila semak sambungan internet anda dan cuba lagi.</p>';
+                }
+            });
+    }
 
-    // Add event listener for the search box
-    searchBox.addEventListener('keyup', filterTable);
+    /**
+     * Checks if a string is a valid URL.
+     */
+    function isValidUrl(str) {
+        const pattern = new RegExp('^(https?:\\/\\/)?' + '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + '((\\d{1,3}\\.){3}\\d{1,3}))' + '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + '(\\?[;&a-z\\d%_.~+=-]*)?' + '(\\#[-a-z\\d_]*)?$', 'i');
+        return !!pattern.test(str);
+    }
 
+    /**
+     * Displays the fetched data in the table.
+     * @param {Array<Array<string>>} data - The data from the Google Sheet.
+     */
+    function displayData(data) {
+        const tableBody = document.getElementById("tableBody");
+        tableBody.innerHTML = "";
+        const columnCount = 14;
 
-    // --- Utility Functions ---
+        data.forEach((row) => {
+            if (!Array.isArray(row) || row.every(cell => !cell || cell.trim() === '')) {
+                return;
+            }
 
-    /**
-     * Checks if a string is a valid URL.
-     */
-    function isValidUrl(str) {
-        try {
-            return new URL(str.startsWith('http') ? str : `http://${str}`).protocol.startsWith('http');
-        } catch (e) {
-            return false;
-        }
-    }
+            const rowElement = document.createElement("tr");
+            rowElement.className = "border-b border-gray-300";
 
-    /**
-     * Provides a friendly name for a Google Drive link (used in Borang column).
-     * @param {string} url - The URL to check.
-     * @returns {string} The friendly form name or a default label.
-     */
-    function getFormName(url) {
-        if (url.includes("drive.google.com/file/d/1AUplgYHH0Q8aSHpfR16Voeid934SVOwD")) return "Perpat-301";
-        if (url.includes("drive.google.com/file/d/1gfOqHHyH4XvnErvfqyITB3N7g7feuua_")) return "TBIS 20C";
-        if (url.includes("drive.google.com/file/d/1gb76-SZuIqmgqovPXF6fo3QTEHbnAs6q")) return "MKAK-BPU-U01/Rev2018";
-        if (url.includes("drive.google.com/file/d/1gHCKAPpycvatoxPdgzVp_fwyBOUmKgM0")) return "MSLF:01/2004";
-        if (url.includes("drive.google.com/file/d/1zG80CDBgLotP1GzHuD6SCq7KIarcarbq")) return "Kimia 15-Pin. 3/2020";
-        if (url.includes("drive.google.com/file/d/1jC-56bzZ1AzsWr4P3WSrFumi11l4CaNk")) return "DNA Ana for Thal Synd & Hbpathy(s) REQform";
-        if (url.includes("drive.google.com/file/d/1OJFjcHAGgrs4UoAFICV-XLODuilCz0R1")) return "Hem-RQ19.ver4. 31.Aug.2021";
-        if (url.includes("smis.imr.gov.my") && url.includes("ALLGY")) return "IMR/AIRC/Allergy/RF";
-        if (url.includes("smis.imr.gov.my") && url.includes("IMMUNE")) return "IMR/AIRC/Autoimmune/RF";
-        if (url.includes("smis.imr.gov.my") && url.includes("BACTE/1732024")) return "IMR/BACT/FORMS/SMIS/01";
-        if (url.includes("drive.google.com/file/d/1F0ksetDiHGDF50YQgkKUUKNrwiselKZF/view")) return "IMR/IDRC/BACT/BRUCE/02";
-        if (url.includes("smis.imr.gov.my") && url.includes("BACTE/1132025")) return "IMR/IDRC/BACT/MYCO/01";
-        if (url.includes("drive.google.com/file/d/1HAo7UGNIhejkpb0FFOE_V1pFI1OWVKG6/view")) return "IMR/IDRC/BACT/TB/01";
-        if (url.includes("drive.google.com/file/d/1bwxAordg64JOqwc_nJoEq1N443t7Ui0q/view")) return "IMR/IDRC/BACT/LEPTO/01";
-        if (url.includes("drive.google.com/file/d/1AtPmZ9NWZ6M9sdNUanFc1SZOVnTZhfB9/view")) return "IMR/BACT/FORMS/RICK/02";
-        if (url.includes("drive.google.com/file/d/1mZQkNWKRRWNGmItsjO5-EY2OnXiLl5Ha/view")) return "IMR/BACT/FORMS/BART/01";
-        if (url.includes("drive.google.com/file/d/1NfcO6P28e2Qia-JLCXHfDSUTtCsqtoea/view")) return "IMR.SDC.UPK.REQUEST FORM";
-        if (url.includes("drive.google.com/file/d/1RMADcbP0-8G5NSux4XjKsaRWUvzRw2Dg/")) return "IMR/SDC/BC/FORM-RQ_Version 7.0";
-        if (url.includes("drive.google.com/file/d/158ypidN1svnVrwj4vwBwoqFBLJ9sLxsD/view")) return "Haemato-oncology request form (Version 3.0)";
-        if (url.includes("drive.google.com/file/d/1MySmBDJVu6A1nk9LBFg_BbRV168-wsOg/view")) return "Chimerism Analysis request form (Version 3.0)";
-        if (url.includes("drive.google.com/file/d/11Hf4u_whjN2XFHkQHpVmb3wRLvd705--/view")) return "Haemophilia request form (Version 5.0)";
-        if (url.includes("https://drive.google.com/file/d/1_GupYCyPH7zAlpGbp_cGsZBXL-Q8zNeq/view?usp=drive_link")) return "TBIS 20C (Ver.2, September 2024)";
-        if (url.includes("https://drive.google.com/file/d/1SXXAHU4MqDn8X3FUEQHdl1RgCamB85Ya/view")) return "IMR/SDC/UMD/REQUEST FORM";
-        if (url.includes("http://smis.imr.gov.my/html/smpl/FormPdf/PID/PID%20Request%20Form%205.0.pdf")) return "IMR/AIRC/PID/RF";
-        if (url.includes("http://smis.imr.gov.my/html/smpl/FormPdf/TRIMMUNE/210428%20RF1HLACrossmatch%20edited1.pdf")) return "IMR/AIRC/TI/RF-1";
-        if (url.includes("http://smis.imr.gov.my/html/smpl/FormPdf/TRIMMUNE/210428RF2HLATyping%20edited.pdf")) return "IMR/AIRC/TI/RF-2";
-        if (url.includes("http://smis.imr.gov.my/html/smpl/FormPdf/TRIMMUNE/210428RF3HLATypingDisease%20Association%20edited.pdf")) return "IMR/AIRC/TI/RF-3";
-        if (url.includes("https://drive.google.com/file/d/1PvJYiayQ0BFWEfPOl-MX2RLwZCW3miTR/view?usp=sharing")) return "IMR/AIRC/TI/RF-4";
-        if (url.includes("https://drive.google.com/file/d/1kzjlZwoZr30yqKuNDPpnUkZTDrPaMKBr/view?usp=sharing")) return "IMR//VIRO/ADMIN/53";
-        if (url.includes("https://drive.google.com/file/d/1nZHilDresfQRsdRC4IxKrLO9i5ENYerj/view?usp=sharing")) return "HTA/PAT/GEN/PK-01-03";
-        if (url.includes("https://drive.google.com/file/d/1OgrKWlElhrbx5UqYDxYprW6zBpiQmMVH/view?usp=sharing")) return "IMR/Viro/HIV/1";
-        if (url.includes("https://drive.google.com/file/d/1OK0rcVi0iM6C_ZGU8k54kjPlBKJfiDYv/view?usp=sharing")) return "IMR/Viro/HIV/2";
-        if (url.includes("https://drive.google.com/file/d/1nCOrP-dsGW3lV7cNLA2TE2MVcEoCR3wI/view?usp=sharing")) return "IMR/Viro/HIV/24";
-        if (url.includes("https://drive.google.com/file/d/1Ii__P-M5_Oh_XtL2OH9a16xaP7J1erC9/view?usp=sharing")) return "HTA/PAT/GEN/PK-01-02";
-        if (url.includes("https://drive.google.com/file/d/145yqRkJ10bTrxj0KchbMvaq2kA-9ZcSC/view?usp=sharing")) return "HTA/PAT/GEN/PK-01-01";
-        if (url.includes("https://drive.google.com/file/d/1-leuB374MoHE1worvwX8O7VKNac_aY50/view?usp=sharing")) return "IMR/VIRO/TC/56";
+            for (let i = 0; i < columnCount; i++) {
+                const cell = row[i] || '';
+                const cellElement = document.createElement("td");
+                cellElement.className = "px-2 py-4 text-sm text-gray-700 text-center break-words";
 
-        return "Buka Borang";
-    }
+                // Add responsive classes to hide columns on mobile
+                if (i > 1) { // Hide columns after the second one (Status)
+                    cellElement.classList.add('hidden', 'md:table-cell');
+                }
 
-    /**
-     * Provides a friendly name for an i-Report link.
-     * @param {string} url - The URL to check.
-     * @returns {string} The friendly link name or a default label.
-     */
-    function getLinkName(url) {
-        if (url.includes("10.159.102.72/Home/Order/Req") || url.includes("10.159.102.72/Home/Result")) return "i-Report AG Hospital Baling";
-        if (url.includes("10.159.96.131/iReportAG/Home/Result")) return "i-ReportAG Hospital Kulim";
-        return "Pautan Lanjut";
-    }
+                const cellText = cell.trim();
 
-    /**
-     * Creates an HTML anchor element for a URL.
-     * @param {string} url - The URL.
-     * @param {number} columnIndex - The index of the column.
-     * @param {boolean} isModal - Whether the link is for the modal.
-     * @returns {HTMLAnchorElement} The configured anchor element.
-     */
-    function createLinkElement(url, columnIndex, isModal = false) {
-        const anchor = document.createElement("a");
-        anchor.href = url.startsWith('http') ? url : `http://${url}`;
-        anchor.target = "_blank";
+                if (i === 0) { // Test Name column
+                    cellElement.classList.add('cursor-pointer', 'text-blue-600', 'hover:underline', 'font-semibold');
+                    cellElement.addEventListener('click', () => showModal(row));
+                }
 
-        if (columnIndex === 3) { // Borang column
-            anchor.innerText = getFormName(url);
-            anchor.className = `bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block ${isModal ? 'mt-1 w-full text-center' : ''}`;
-        } else { // Other URL columns
-            anchor.innerText = getLinkName(url);
-            anchor.className = `text-blue-600 hover:underline ${isModal ? 'mt-1 block' : ''}`;
-        }
-        return anchor;
-    }
+                if (cellText.toUpperCase() === "ACTIVE") {
+                    cellElement.innerText = cellText;
+                    cellElement.className += " text-green-500 font-semibold";
+                } else if (cellText.toUpperCase() === "SUSPENDED") {
+                    cellElement.innerText = cellText;
+                    cellElement.className += " text-red-500 font-semibold";
+                } else if (isValidUrl(cellText)) {
+                    const anchor = document.createElement("a");
+                    anchor.href = cellText.startsWith('http') ? cellText : `http://${cellText}`;
+                    anchor.target = "_blank";
 
-    // --- Data Fetching and Display ---
+                    // Column-specific styling for links
+                    if (i === 3) { // This is the "Borang" column
+                        if (cellText.includes("drive.google.com/file/d/1AUplgYHH0Q8aSHpfR16Voeid934SVOwD")) {
+                            anchor.innerText = "Perpat-301";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1gfOqHHyH4XvnErvfqyITB3N7g7feuua_")) {
+                            anchor.innerText = "TBIS 20C";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1gb76-SZuIqmgqovPXF6fo3QTEHbnAs6q")) {
+                            anchor.innerText = "MKAK-BPU-U01/Rev2018";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1gHCKAPpycvatoxPdgzVp_fwyBOUmKgM0")) {
+                            anchor.innerText = "MSLF:01/2004";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1zG80CDBgLotP1GzHuD6SCq7KIarcarbq")) {
+                            anchor.innerText = "Kimia 15-Pin. 3/2020";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1jC-56bzZ1AzsWr4P3WSrFumi11l4CaNk")) {
+                            anchor.innerText = "DNA Ana for Thal Synd & Hbpathy(s) REQform";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1OJFjcHAGgrs4UoAFICV-XLODuilCz0R1")) {
+                            anchor.innerText = "Hem-RQ19.ver4. 31.Aug.2021";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("smis.imr.gov.my") && cellText.includes("ALLGY")) {
+                            anchor.innerText = "IMR/AIRC/Allergy/RF";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("smis.imr.gov.my") && cellText.includes("IMMUNE")) {
+                            anchor.innerText = "IMR/AIRC/Autoimmune/RF";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("smis.imr.gov.my") && cellText.includes("BACTE/1732024")) {
+                            anchor.innerText = "IMR/BACT/FORMS/SMIS/01";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1F0ksetDiHGDF50YQgkKUUKNrwiselKZF/view")) {
+                            anchor.innerText = "IMR/IDRC/BACT/BRUCE/02";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("smis.imr.gov.my") && cellText.includes("BACTE/1132025")) {
+                            anchor.innerText = "IMR/IDRC/BACT/MYCO/01";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1HAo7UGNIhejkpb0FFOE_V1pFI1OWVKG6/view")) {
+                            anchor.innerText = "IMR/IDRC/BACT/TB/01";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1bwxAordg64JOqwc_nJoEq1N443t7Ui0q/view")) {
+                            anchor.innerText = "IMR/IDRC/BACT/LEPTO/01";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1AtPmZ9NWZ6M9sdNUanFc1SZOVnTZhfB9/view")) {
+                            anchor.innerText = "IMR/BACT/FORMS/RICK/02";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1mZQkNWKRRWNGmItsjO5-EY2OnXiLl5Ha/view")) {
+                            anchor.innerText = "IMR/BACT/FORMS/BART/01";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1NfcO6P28e2Qia-JLCXHfDSUTtCsqtoea/view")) {
+                            anchor.innerText = "IMR.SDC.UPK.REQUEST FORM";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1RMADcbP0-8G5NSux4XjKsaRWUvzRw2Dg/")) {
+                            anchor.innerText = "IMR/SDC/BC/FORM-RQ_Version 7.0";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/158ypidN1svnVrwj4vwBwoqFBLJ9sLxsD/view")) {
+                            anchor.innerText = "Haemato-oncology request form (Version 3.0)";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/1MySmBDJVu6A1nk9LBFg_BbRV168-wsOg/view")) {
+                            anchor.innerText = "Chimerism Analysis request form (Version 3.0)";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("drive.google.com/file/d/11Hf4u_whjN2XFHkQHpVmb3wRLvd705--/view")) {
+                            anchor.innerText = "Haemophilia request form (Version 5.0)";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1_GupYCyPH7zAlpGbp_cGsZBXL-Q8zNeq/view?usp=drive_link")) {
+                            anchor.innerText = "TBIS 20C (Ver.2, September 2024)";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1SXXAHU4MqDn8X3FUEQHdl1RgCamB85Ya/view")) {
+                            anchor.innerText = "IMR/SDC/UMD/REQUEST FORM";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("http://smis.imr.gov.my/html/smpl/FormPdf/PID/PID%20Request%20Form%205.0.pdf")) {
+                            anchor.innerText = "IMR/AIRC/PID/RF";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("http://smis.imr.gov.my/html/smpl/FormPdf/TRIMMUNE/210428%20RF1HLACrossmatch%20edited1.pdf")) {
+                            anchor.innerText = "IMR/AIRC/TI/RF-1";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("http://smis.imr.gov.my/html/smpl/FormPdf/TRIMMUNE/210428RF2HLATyping%20edited.pdf")) {
+                            anchor.innerText = "IMR/AIRC/TI/RF-2";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("http://smis.imr.gov.my/html/smpl/FormPdf/TRIMMUNE/210428RF3HLATypingDisease%20Association%20edited.pdf")) {
+                            anchor.innerText = "IMR/AIRC/TI/RF-3";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1PvJYiayQ0BFWEfPOl-MX2RLwZCW3miTR/view?usp=sharing")) {
+                            anchor.innerText = "IMR/AIRC/TI/RF-4";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1kzjlZwoZr30yqKuNDPpnUkZTDrPaMKBr/view?usp=sharing")) {
+                            anchor.innerText = "IMR//VIRO/ADMIN/53";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1nZHilDresfQRsdRC4IxKrLO9i5ENYerj/view?usp=sharing")) {
+                            anchor.innerText = "HTA/PAT/GEN/PK-01-03";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1OgrKWlElhrbx5UqYDxYprW6zBpiQmMVH/view?usp=sharing")) {
+                            anchor.innerText = "IMR/Viro/HIV/1";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1OK0rcVi0iM6C_ZGU8k54kjPlBKJfiDYv/view?usp=sharing")) {
+                            anchor.innerText = "IMR/Viro/HIV/2";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1nCOrP-dsGW3lV7cNLA2TE2MVcEoCR3wI/view?usp=sharing")) {
+                            anchor.innerText = "IMR/Viro/HIV/24";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1Ii__P-M5_Oh_XtL2OH9a16xaP7J1erC9/view?usp=sharing")) {
+                            anchor.innerText = "HTA/PAT/GEN/PK-01-02";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/145yqRkJ10bTrxj0KchbMvaq2kA-9ZcSC/view?usp=sharing")) {
+                            anchor.innerText = "HTA/PAT/GEN/PK-01-01";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else if (cellText.includes("https://drive.google.com/file/d/1-leuB374MoHE1worvwX8O7VKNac_aY50/view?usp=sharing")) {
+                            anchor.innerText = "IMR/VIRO/TC/56";
+                            anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        } else {
+                            anchor.innerText = "Buka Borang";
+                            anchor.className = "bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block";
+                        }
+                    } else { // For all other columns
+                        anchor.className = "text-blue-600 hover:underline";
+                        if (cellText.includes("10.159.102.72/Home/Order/Req") || cellText.includes("10.159.102.72/Home/Result")) {
+                            anchor.innerText = "i-Report AG Hospital Baling";
+                        } else if (cellText.includes("10.159.96.131/iReportAG/Home/Result")) {
+                            anchor.innerText = "i-ReportAG Hospital Kulim";
+                        } else {
+                            anchor.innerText = "Pautan Lanjut";
+                        }
+                    }
+                    cellElement.appendChild(anchor);
+                } else {
+                    cellElement.innerText = cellText;
+                }
+                if (i === 7) {
+                    cellElement.classList.add('text-red-600', 'font-medium');
+                }
 
-    /**
-     * Fetches and parses data from the Google Sheet.
-     */
-    function fetchData() {
-        // Show loading spinner
-        loadingSpinner.style.display = 'flex';
-        tableContainer.classList.add('hidden');
+                rowElement.appendChild(cellElement);
+            }
 
-        fetch(url)
-            .then(response => response.text())
-            .then(data => {
-                // Regex to split CSV, correctly handling commas inside double quotes
-                const rows = data.split(/\r?\n(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
-                
-                // Parse data, skipping the header row
-                allTestData = rows.slice(1).map(row => {
-                    if (!row) return [];
-                    // Regex to match content inside quotes or non-comma content
-                    const columns = row.match(/("[\s\S]*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
-                    return columns.map(cell => {
-                        let cleanCell = cell ? cell.trim() : '';
-                        if (cleanCell.startsWith('"') && cleanCell.endsWith('"')) {
-                            cleanCell = cleanCell.slice(1, -1);
-                        }
-                        return cleanCell.replace(/""/g, '"');
-                    });
-                }).filter(row => row.length > 0 && !row.every(cell => !cell || cell.trim() === '')); // Filter out empty rows
+            tableBody.appendChild(rowElement);
+        });
 
-                displayData(allTestData);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-                loadingSpinner.innerHTML = '<p class="text-center text-red-600 font-semibold">Gagal memuatkan data. Sila semak sambungan internet anda dan cuba lagi.</p>';
-            });
-    }
+        document.getElementById('loadingSpinner').style.display = 'none';
+        document.getElementById('tableContainer').classList.remove('hidden');
+    }
 
-    /**
-     * Displays the provided data in the table.
-     * @param {Array<Array<string>>} data - The data rows to display.
-     */
-    function displayData(data) {
-        tableBody.innerHTML = "";
-        const columnCount = headers.length;
+    /**
+     * Shows the details modal with data from the clicked row.
+     * @param {Array<string>} rowData - The data for the selected row.
+     */
+    function showModal(rowData) {
+        const modal = document.getElementById('detailsModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const modalBox = modal.querySelector('div');
 
-        data.forEach((row) => {
-            const rowElement = document.createElement("tr");
-            rowElement.className = "border-b border-gray-200 hover:bg-blue-50 transition-colors duration-100";
-            // Store the full data array on the row element for quick access during filtering
-            rowElement.dataset.rowData = JSON.stringify(row);
+        modalTitle.innerText = rowData[0] || 'Test Details';
+        modalContent.innerHTML = '';
 
+        headers.forEach((header, index) => {
+            const value = rowData[index] || 'N/A';
+            if (index === 0) return;
 
-            for (let i = 0; i < columnCount; i++) {
-                const cell = row[i] || '';
-                const cellElement = document.createElement("td");
-                cellElement.className = "px-2 py-4 text-sm text-gray-700 text-center break-words align-top";
+            const detailElement = document.createElement('div');
+            detailElement.className = 'flex flex-col border-b border-gray-300 pb-2';
 
-                // Add responsive classes to hide columns on mobile (index > 1)
-                if (i > 1) {
-                    cellElement.classList.add('hidden', 'md:table-cell');
-                }
+            const headerElement = document.createElement('strong');
+            headerElement.className = 'text-gray-600 text-sm';
+            headerElement.innerText = header;
+            detailElement.appendChild(headerElement);
 
-                const cellText = cell.trim();
+            if (isValidUrl(value)) {
+                const anchor = document.createElement("a");
+                anchor.href = value.startsWith('http') ? value : `http://${value}`;
+                anchor.target = "_blank";
 
-                if (i === 0) { // Test Name column (clickable to open modal)
-                    cellElement.classList.add('cursor-pointer', 'text-blue-600', 'hover:underline', 'font-semibold');
-                    cellElement.innerText = cellText;
-                    cellElement.addEventListener('click', () => showModal(row));
-                } else if (i === 1) { // Status column
-                    cellElement.innerText = cellText;
-                    if (cellText.toUpperCase() === "ACTIVE") {
-                        cellElement.className += " text-green-600 font-semibold";
-                    } else if (cellText.toUpperCase() === "SUSPENDED") {
-                        cellElement.className += " text-red-600 font-semibold";
-                    }
-                } else if (isValidUrl(cellText)) { // Any URL column
-                    cellElement.appendChild(createLinkElement(cellText, i));
-                } else { // Standard text column
-                    cellElement.innerText = cellText;
-                    if (i === 7) { // Assuming Panduan untuk Ward dan Klinik needs emphasis
-                        cellElement.classList.add('text-red-600', 'font-medium');
-                    }
-                }
+                if (index === 3) { // "Borang" column in modal
+                    if (value.includes("drive.google.com/file/d/1AUplgYHH0Q8aSHpfR16Voeid934SVOwD")) {
+                        anchor.innerText = "Perpat-301";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1gfOqHHyH4XvnErvfqyITB3N7g7feuua_")) {
+                        anchor.innerText = "TBIS 20C";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1gb76-SZuIqmgqovPXF6fo3QTEHbnAs6q")) {
+                        anchor.innerText = "MKAK-BPU-U01/Rev2018";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1gHCKAPpycvatoxPdgzVp_fwyBOUmKgM0")) {
+                        anchor.innerText = "MSLF:01/2004";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1zG80CDBgLotP1GzHuD6SCq7KIarcarbq")) {
+                        anchor.innerText = "Kimia 15-Pin. 3/2020";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1jC-56bzZ1AzsWr4P3WSrFumi11l4CaNk")) {
+                        anchor.innerText = "DNA Ana for Thal Synd & Hbpathy(s) REQform";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1OJFjcHAGgrs4UoAFICV-XLODuilCz0R1")) {
+                        anchor.innerText = "Hem-RQ19.ver4. 31.Aug.2021";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("smis.imr.gov.my") && value.includes("ALLGY")) {
+                        anchor.innerText = "IMR/AIRC/Allergy/RF";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("smis.imr.gov.my") && value.includes("IMMUNE")) {
+                        anchor.innerText = "IMR/AIRC/Autoimmune/RF";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("smis.imr.gov.my") && value.includes("BACTE/1732024")) {
+                        anchor.innerText = "IMR/BACT/FORMS/SMIS/01";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1F0ksetDiHGDF50YQgkKUUKNrwiselKZF/view")) {
+                        anchor.innerText = "IMR/IDRC/BACT/BRUCE/02";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("smis.imr.gov.my") && value.includes("BACTE/1132025")) {
+                        anchor.innerText = "IMR/IDRC/BACT/MYCO/01";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1HAo7UGNIhejkpb0FFOE_V1pFI1OWVKG6/view")) {
+                        anchor.innerText = "IMR/IDRC/BACT/TB/01";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1bwxAordg64JOqwc_nJoEq1N443t7Ui0q/view")) {
+                        anchor.innerText = "IMR/IDRC/BACT/LEPTO/01";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1AtPmZ9NWZ6M9sdNUanFc1SZOVnTZhfB9/view")) {
+                        anchor.innerText = "IMR/BACT/FORMS/RICK/02";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1mZQkNWKRRWNGmItsjO5-EY2OnXiLl5Ha/view")) {
+                        anchor.innerText = "IMR/BACT/FORMS/BART/01";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1NfcO6P28e2Qia-JLCXHfDSUTtCsqtoea/view")) {
+                        anchor.innerText = "IMR.SDC.UPK.REQUEST FORM";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1RMADcbP0-8G5NSux4XjKsaRWUvzRw2Dg/")) {
+                        anchor.innerText = "IMR/SDC/BC/FORM-RQ_Version 7.0";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/158ypidN1svnVrwj4vwBwoqFBLJ9sLxsD/view")) {
+                        anchor.innerText = "Haemato-oncology request form (Version 3.0)";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/1MySmBDJVu6A1nk9LBFg_BbRV168-wsOg/view")) {
+                        anchor.innerText = "Chimerism Analysis request form (Version 3.0)";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("drive.google.com/file/d/11Hf4u_whjN2XFHkQHpVmb3wRLvd705--/view")) {
+                        anchor.innerText = "Haemophilia request form (Version 5.0)";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1_GupYCyPH7zAlpGbp_cGsZBXL-Q8zNeq/view?usp=drive_link")) {
+                        anchor.innerText = "TBIS 20C (Ver.2, September 2024)";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1SXXAHU4MqDn8X3FUEQHdl1RgCamB85Ya/view")) {
+                        anchor.innerText = "IMR/SDC/UMD/REQUEST FORM";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("http://smis.imr.gov.my/html/smpl/FormPdf/PID/PID%20Request%20Form%205.0.pdf")) {
+                        anchor.innerText = "IMR/AIRC/PID/RF";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("http://smis.imr.gov.my/html/smpl/FormPdf/TRIMMUNE/210428%20RF1HLACrossmatch%20edited1.pdf")) {
+                        anchor.innerText = "IMR/AIRC/TI/RF-1";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("http://smis.imr.gov.my/html/smpl/FormPdf/TRIMMUNE/210428RF2HLATyping%20edited.pdf")) {
+                        anchor.innerText = "IMR/AIRC/TI/RF-2";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("http://smis.imr.gov.my/html/smpl/FormPdf/TRIMMUNE/210428RF3HLATypingDisease%20Association%20edited.pdf")) {
+                        anchor.innerText = "IMR/AIRC/TI/RF-3";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1PvJYiayQ0BFWEfPOl-MX2RLwZCW3miTR/view?usp=sharing")) {
+                        anchor.innerText = "IMR/AIRC/TI/RF-4";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1kzjlZwoZr30yqKuNDPpnUkZTDrPaMKBr/view?usp=sharing")) {
+                        anchor.innerText = "IMR//VIRO/ADMIN/53";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1nZHilDresfQRsdRC4IxKrLO9i5ENYerj/view?usp=sharing")) {
+                        anchor.innerText = "HTA/PAT/GEN/PK-01-03";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1OgrKWlElhrbx5UqYDxYprW6zBpiQmMVH/view?usp=sharing")) {
+                        anchor.innerText = "IMR/Viro/HIV/1";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1OK0rcVi0iM6C_ZGU8k54kjPlBKJfiDYv/view?usp=sharing")) {
+                        anchor.innerText = "IMR/Viro/HIV/2";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1nCOrP-dsGW3lV7cNLA2TE2MVcEoCR3wI/view?usp=sharing")) {
+                        anchor.innerText = "IMR/Viro/HIV/24";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1Ii__P-M5_Oh_XtL2OH9a16xaP7J1erC9/view?usp=sharing")) {
+                        anchor.innerText = "HTA/PAT/GEN/PK-01-02";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/145yqRkJ10bTrxj0KchbMvaq2kA-9ZcSC/view?usp=sharing")) {
+                        anchor.innerText = "HTA/PAT/GEN/PK-01-01";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else if (value.includes("https://drive.google.com/file/d/1-leuB374MoHE1worvwX8O7VKNac_aY50/view?usp=sharing")) {
+                        anchor.innerText = "IMR/VIRO/TC/56";
+                        anchor.className = "bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    } else {
+                        anchor.innerText = "Buka Borang";
+                        anchor.className = "bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded-md transition-colors duration-200 inline-block mt-1 w-full text-center";
+                    }
+                } else {
+                    anchor.className = "text-blue-600 hover:underline mt-1";
+                    if (value.includes("10.159.102.72/Home/Order/Req") || value.includes("10.159.102.72/Home/Result")) {
+                        anchor.innerText = "i-Report AG Hospital Baling";
+                    } else if (value.includes("10.159.96.131/iReportAG/Home/Result")) {
+                        anchor.innerText = "i-ReportAG Hospital Kulim";
+                    } else {
+                        anchor.innerText = "Pautan Lanjut";
+                    }
+                }
+                detailElement.appendChild(anchor);
+            } else {
+                const valueElement = document.createElement('span');
+                valueElement.className = 'text-gray-800 mt-1';
+                valueElement.innerText = value;
+                detailElement.appendChild(valueElement);
+            }
 
-                rowElement.appendChild(cellElement);
-            }
+            modalContent.appendChild(detailElement);
+        });
 
-            tableBody.appendChild(rowElement);
-        });
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            modal.classList.remove('opacity-0');
+            modalBox.classList.remove('scale-95');
+        }, 10);
+    }
 
-        // Hide spinner and show table
-        loadingSpinner.style.display = 'none';
-        tableContainer.classList.remove('hidden');
-    }
+    /**
+     * Closes the details modal.
+     */
+    function closeModal() {
+        const modal = document.getElementById('detailsModal');
+        const modalBox = modal.querySelector('div');
 
-    // --- Filtering and Modal Logic ---
+        modal.classList.add('opacity-0');
+        modalBox.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
 
-    /**
-     * Filters the table based on the search input, using allTestData.
-     */
-    function filterTable() {
-        const filter = searchBox.value.toLowerCase();
-        const rows = document.querySelectorAll("#dataTable tbody tr");
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('detailsModal').addEventListener('click', (event) => {
+        if (event.target === event.currentTarget) {
+            closeModal();
+        }
+    });
 
-        rows.forEach((row) => {
-            // Retrieve the full row data from the dataset
-            const rowData = JSON.parse(row.dataset.rowData || '[]');
-            
-            let match = false;
-            // Search across all columns for a match
-            rowData.forEach((cell) => {
-                if (cell.toLowerCase().includes(filter)) {
-                    match = true;
-                }
-            });
-            row.style.display = match ? "" : "none";
-        });
-    }
+    /**
+     * Filters the table based on the search input.
+     */
+    function filterTable() {
+        const filter = document.getElementById("searchBox").value.toLowerCase();
+        const rows = document.querySelectorAll("#dataTable tbody tr");
 
-    /**
-     * Shows the details modal with data from the clicked row.
-     * @param {Array<string>} rowData - The data for the selected row.
-     */
-    function showModal(rowData) {
-        const modalTitle = document.getElementById('modalTitle');
-        const modalContent = document.getElementById('modalContent');
-
-        modalTitle.innerText = rowData[0] || 'Butiran Ujian';
-        modalContent.innerHTML = '';
-
-        // Start from index 1 to skip the main Ujian name (which is the title)
-        headers.forEach((header, index) => {
-            if (index === 0) return;
-
-            const value = rowData[index] || 'N/A';
-
-            const detailElement = document.createElement('div');
-            detailElement.className = 'flex flex-col border-b border-gray-300 pb-2';
-
-            const headerElement = document.createElement('strong');
-            headerElement.className = 'text-gray-600 text-sm';
-            headerElement.innerText = header;
-            detailElement.appendChild(headerElement);
-
-            if (isValidUrl(value)) {
-                // Use the helper function for consistency with table display
-                const anchor = createLinkElement(value, index, true);
-                detailElement.appendChild(anchor);
-            } else {
-                const valueElement = document.createElement('span');
-                valueElement.className = `text-gray-800 mt-1 ${index === 7 ? 'text-red-600 font-medium' : ''}`;
-                valueElement.innerText = value;
-                detailElement.appendChild(valueElement);
-            }
-
-            modalContent.appendChild(detailElement);
-        });
-
-        // Show modal with smooth transition
-        detailsModal.classList.remove('hidden');
-        setTimeout(() => {
-            detailsModal.classList.remove('opacity-0');
-            modalBox.classList.remove('scale-95');
-        }, 10);
-    }
-
-    /**
-     * Closes the details modal.
-     */
-    function closeModal() {
-        // Hide modal with smooth transition
-        detailsModal.classList.add('opacity-0');
-        modalBox.classList.add('scale-95');
-        setTimeout(() => {
-            detailsModal.classList.add('hidden');
-        }, 300);
-    }
-
-    // Modal close listeners
-    closeModalBtn.addEventListener('click', closeModal);
-    detailsModal.addEventListener('click', (event) => {
-        if (event.target === detailsModal) {
-            closeModal();
-        }
-    });
-
-    // Close modal on Escape key press
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !detailsModal.classList.contains('hidden')) {
-            closeModal();
-        }
-    });
-
+        rows.forEach((row) => {
+            const cells = row.querySelectorAll("td");
+            let match = false;
+            cells.forEach((cell) => {
+                if (cell.textContent.toLowerCase().includes(filter)) {
+                    match = true;
+                }
+            });
+            row.style.display = match ? "" : "none";
+        });
+    }
 </script>
 </body>
 </html>
